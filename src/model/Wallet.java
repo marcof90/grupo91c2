@@ -2,15 +2,19 @@ package model;
 
 public class Wallet {
     
+    public final static int LIMITE = 1200000;
+    public final static int MINIMO_TRANSACCION = 10000;
     /**
      * Cantidad de dinero actual en la billetera
      */
     private int saldo;
 
+    private boolean tieneLimite;
 
     public Wallet() {
         super();
         saldo = 0;
+        tieneLimite = true;
     }
 
     /**
@@ -39,6 +43,12 @@ public class Wallet {
         if(valor <= 0){
             return "Cantidad no válida";
         }
+        if(saldo + valor > LIMITE && tieneLimite){
+            return "No puedes superar el limite: $" + LIMITE;
+        }
+        if(valor < MINIMO_TRANSACCION && tieneLimite){
+            return "El valor mínimo por transacción es: $"+MINIMO_TRANSACCION;
+        }
         saldo += valor;//saldo = saldo + valor;
         return "Exito! Ahora tienes $" + saldo;
     }
@@ -50,6 +60,9 @@ public class Wallet {
         if(valor > saldo){
             return "Saldo insuficiente";
         }
+        if(valor < MINIMO_TRANSACCION && tieneLimite){
+            return "El valor mínimo por transacción es: $"+MINIMO_TRANSACCION;
+        }
         saldo -= valor;
         return "Exito! Ahora tienes $" + saldo;
     }
@@ -57,4 +70,17 @@ public class Wallet {
     public String consultarSaldo(){
         return "Tu saldo es: $" + saldo;
     }
+
+    public String romperLimite(){
+        if(!tieneLimite){
+            return "Tu cuenta no tenia limites";
+        }
+        if(saldo < 20000){
+            return "Saldo insuficiente";
+        }
+        tieneLimite = false;
+        saldo = saldo - 20000; // saldo -= 20000;
+        return "Tu cuenta ya no tiene limites!";
+    }
+
 }
