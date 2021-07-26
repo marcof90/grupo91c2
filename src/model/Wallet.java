@@ -1,5 +1,7 @@
 package model;
 
+import java.util.ArrayList;
+
 public class Wallet {
     
     public final static int LIMITE = 1200000;
@@ -11,10 +13,16 @@ public class Wallet {
 
     private boolean tieneLimite;
 
+    /**
+     * Lista de movimientos en la wallet
+     */
+    private ArrayList<Movimiento> movimientos;
+
     public Wallet() {
         super();
         saldo = 0;
         tieneLimite = true;
+        movimientos = new ArrayList<>();
     }
 
     /**
@@ -23,6 +31,10 @@ public class Wallet {
      */
     public int getSaldo() {
         return saldo;
+    }
+
+    public ArrayList<Movimiento> getMovimientos() {
+        return movimientos;
     }
 
     /**
@@ -39,9 +51,10 @@ public class Wallet {
      * @return "cantidad no valida" en caso de que valor <= 0.
      *          "Exito! Ahora tienes $" + saldo, en caso de que se pueda guardar el dinero
      */
-    public String guardarDinero(int valor){
+    public String guardarDinero(int valor) throws Exception  {
         if(valor <= 0){
-            return "Cantidad no válida";
+            throw new Exception("Cantidad no válida");
+            // return "Cantidad no válida";
         }
         if(saldo + valor > LIMITE && tieneLimite){
             return "No puedes superar el limite: $" + LIMITE;
@@ -50,6 +63,8 @@ public class Wallet {
             return "El valor mínimo por transacción es: $"+MINIMO_TRANSACCION;
         }
         saldo += valor;//saldo = saldo + valor;
+        Movimiento ingreso = new Movimiento('I', valor);
+        movimientos.add(ingreso);
         return "Exito! Ahora tienes $" + saldo;
     }
 
@@ -64,6 +79,8 @@ public class Wallet {
             return "El valor mínimo por transacción es: $"+MINIMO_TRANSACCION;
         }
         saldo -= valor;
+        Movimiento retiro = new Movimiento('R', valor);
+        movimientos.add(retiro);
         return "Exito! Ahora tienes $" + saldo;
     }
 
@@ -80,6 +97,8 @@ public class Wallet {
         }
         tieneLimite = false;
         saldo = saldo - 20000; // saldo -= 20000;
+        Movimiento pago = new Movimiento('P', 20000);
+        movimientos.add(pago);
         return "Tu cuenta ya no tiene limites!";
     }
 
