@@ -15,10 +15,10 @@ public class Movimiento {
 
     private Date fecha;
 
-    public Movimiento(char tipo, int monto) {
+    public Movimiento(char pTipo, int monto) {
         super();
         this.monto = monto;
-        this.tipo = tipo;
+        tipo = pTipo;
         fecha = new Date();
     }
 
@@ -33,7 +33,7 @@ public class Movimiento {
     public Date getFecha() {
         return fecha;
     }
-
+    
     @Override
     public String toString() {
         // TODO Auto-generated method stub

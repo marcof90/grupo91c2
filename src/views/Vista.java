@@ -1,7 +1,10 @@
 package views;
 
 import model.Movimiento;
-import model.User;
+
+import java.util.Date;
+
+import model.Client;
 import model.Wallet;
 
 public class Vista {
@@ -15,27 +18,27 @@ public class Vista {
         }
 
 
-        //crear un objeto de User
-        User cliente = new User("Pedro");
+        //crear un objeto de Client
+        Client cliente = new Client("Pedro", new Date());
         System.out.println(cliente.getNombre());
-        System.out.println(cliente.getBilletera().getSaldo());
+        System.out.println(cliente.getWallet().getSaldo());
 
 
-        User persona = new User("Juan");
-        System.out.println(persona.getBilletera().consultarSaldo());
+        Client persona = new Client("Juan", new Date());
+        System.out.println(persona.getWallet().consultarSaldo());
         try {
-            System.out.println(persona.getBilletera().guardarDinero(25000));            
-            System.out.println(persona.getBilletera().guardarDinero(-20000));
+            System.out.println(persona.getWallet().guardarDinero(25000));            
+            System.out.println(persona.getWallet().guardarDinero(-20000));
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
 
         
-        for (Movimiento movimiento : persona.getBilletera().getMovimientos()) {
+        for (Movimiento movimiento : persona.getWallet().getMovimientos()) {
             System.out.println(movimiento);
         }
 
-
+       
 
         //creamos objeto de Wallet
         // Wallet billetera1 = new Wallet();
