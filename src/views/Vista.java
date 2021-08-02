@@ -5,7 +5,6 @@ import model.Movimiento;
 import java.util.Date;
 
 import model.Client;
-import model.Wallet;
 
 public class Vista {
     public static void main(String[] args) {
@@ -16,7 +15,6 @@ public class Vista {
             System.out.println("hubo un error");
             //TODO: handle exception
         }
-
 
         //crear un objeto de Client
         Client cliente = new Client("Pedro", new Date());
@@ -32,13 +30,10 @@ public class Vista {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-
         
         for (Movimiento movimiento : persona.getWallet().getMovimientos()) {
             System.out.println(movimiento);
         }
-
-       
 
         //creamos objeto de Wallet
         // Wallet billetera1 = new Wallet();
