@@ -22,4 +22,10 @@ public class Client extends User{
         return fechaNacimiento;
     }
 
+    @Override
+    public String toString() {
+        return "Nombre:"+ getNombre() + " Fecha:" + fechaNacimiento.toString();
+        // return super.toString();
+    }
+
 }
