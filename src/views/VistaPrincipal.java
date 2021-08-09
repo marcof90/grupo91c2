@@ -31,10 +31,12 @@ public class VistaPrincipal extends JFrame{
         //agregar la relacion o atributo
         add(panelOpciones, BorderLayout.SOUTH);
         add(panelClientes, BorderLayout.CENTER);
+        updateListaClientes();
     }
 
     public void addCliente(Date fechaNacimiento, String nombre) {
-        control.addCliente(fechaNacimiento, nombre);
+        control.addCliente(fechaNacimiento, nombre);        
+        updateListaClientes();
     }
 
     public String getListDataClientes() {
@@ -42,7 +44,7 @@ public class VistaPrincipal extends JFrame{
     }
 
     public void updateListaClientes() {
-        
+        panelClientes.updateListaClientes(control.getListClients());
     }
 
 }
