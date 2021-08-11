@@ -29,7 +29,6 @@ public class Controller {
                 fillUsersData(serviceDB.getUsersDB());
             }
         } catch (SQLException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
@@ -42,10 +41,8 @@ public class Controller {
                 clientes.add(cliente);
             }
         } catch (SQLException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         } catch (ParseException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }

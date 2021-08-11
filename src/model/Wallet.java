@@ -33,6 +33,14 @@ public class Wallet {
         return saldo;
     }
 
+    public boolean isTieneLimite() {
+        return tieneLimite;
+    }
+
+    public void setTieneLimite(boolean tieneLimite) {
+        this.tieneLimite = tieneLimite;
+    }
+
     public ArrayList<Movimiento> getMovimientos() {
         return movimientos;
     }
